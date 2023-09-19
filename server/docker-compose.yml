@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  rabbit-mq:
+    image: rabbitmq:3.11.23-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+
+  redis:
+    image: redis:7.2.1
+    ports:
+      - "6379:6379"
+    volumes:
+      - type: bind
+        source: data/redis
+        target: /data
+      
+  redis-insight:
+    image: redislabs/redisinsight:latest
+    ports:
+      - "8001:8001"
+    volumes:
+      - type: bind
+        source: data/redis-insight
+        target: /db
+    environment:
+      REDIS_PASSWORD: "password"
