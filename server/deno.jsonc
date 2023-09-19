@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev:front-server": "deno run -A --watch bin/front-server",
-    "dev:match-maker": "deno run -A --watch bin/match-maker"
+    "dev:front-server": "deno run -A --watch bin/front-server.ts",
+    "dev:match-maker": "deno run -A --watch bin/match-maker.ts"
   }
 }
