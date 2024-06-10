@@ -10,7 +10,7 @@ channel.consume({ queue, noAck: false }, async (args, props, data) => {
 
 async function doMatch() {
   const candidates = await redis.listCandidates();
-  const { established, mismatched } = match(candidates);
+  const { established, mismatched } = await match(candidates);
   console.log("established groups: ", established.length);
   console.log("mismatched players: ", mismatched.length);
 
@@ -21,7 +21,7 @@ async function doMatch() {
 }
 
 const matchInterval = 3000;
-while (true) {
-  await doMatch();
-  await new Promise((resolve) => setTimeout(resolve, matchInterval));
-}
+// while (true) {
+await doMatch();
+await new Promise((resolve) => setTimeout(resolve, matchInterval));
+// }

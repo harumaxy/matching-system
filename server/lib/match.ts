@@ -72,6 +72,8 @@ function condition(a: Ticket, b: Ticket): boolean {
   return a.game_mode === b.game_mode && a.rank === b.rank;
 }
 
-export function match(tickets: Ticket[]) {
-  return matchRecursive(tickets, [], []);
+export async function match(tickets: Ticket[]) {
+  const result = matchRecursive(tickets, [], []);
+  await Deno.writeTextFile("result.json", JSON.stringify(result));
+  return result;
 }
